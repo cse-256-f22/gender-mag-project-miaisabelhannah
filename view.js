@@ -1,5 +1,32 @@
 // ---- Define your dialogs  and panels here ----
+const effective_perm_panel = define_new_effective_permissions('perm-panel', true);
+$('#sidepanel').append(effective_perm_panel);
+$('#perm-panel').attr('filepath', '/C')
 
+function set_user(selected_user) {
+    $('#perm-panel').attr('username', selected_user);
+}
+const user_select_field = define_new_user_select_field("user-select-field", "Select a user", set_user);
+$('#sidepanel').append(user_select_field);
+
+const info_dialog = define_new_dialog("info-dialog", "Permissions Info");
+$('.perm_info').click(function(){
+    console.log('clicked!')
+    info_dialog.dialog('open')
+
+    console.log($('#perm-panel').attr('filepath'))
+    console.log($('#perm-panel').attr('username'))
+    console.log($(this).attr('permission_name'))
+
+    const file_obj = path_to_file[$('#perm-panel').attr('filepath')];
+    const user_obj = all_users[$('#perm-panel').attr('username')];
+
+    const check_action_allowed = allow_user_action(file_obj, user_obj, $(this).attr('permission_name'), true);
+    const explanation_text = get_explanation_text(check_action_allowed);
+
+    $('#info-dialog').append(explanation_text);
+
+})
 
 
 // ---- Display file structure ----
