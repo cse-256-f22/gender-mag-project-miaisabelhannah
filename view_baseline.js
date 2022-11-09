@@ -38,6 +38,10 @@ advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">For special
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
 grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
 
+// Make the  permission checkboxes table:
+grouped_permissions = define_permission_checkboxes('perm_entry')
+grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
+
 // Make the list of users (empty for now - will get populated when we know the file):
 file_permission_users = define_single_select_list('permdialog_file_user_list', function(selected_user, e, ui){
     // when a new user is selected, change username attribute of grouped permissions:
@@ -142,6 +146,15 @@ perm_remove_user_button.click(function(){
     }
 })
 
+// const perm_entry_table = $(`
+// <table id="perm_entry_table" class="ui-widget-content section">
+//     <tr id="perm_entry_header">
+//         <th id="perm_entry_header_p" width="99%">Permissions</th>
+//         <th id="perm_entry_header_allow">Allow</th>
+//         <th id="perm_entry_header_deny">Deny</th>
+//     </tr>
+// </table>
+// `)
 
 // --- Append all the elements to the permissions dialog in the right order: --- 
 perm_dialog.append(obj_name_div)
@@ -149,8 +162,11 @@ perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
+// perm_dialog.append(perm_entry)
+
 perm_dialog.append(grouped_permissions)
 perm_dialog.append(advanced_expl_div)
+//perm_dialog.append(perm_entry)
 
 // --- Additional logic for reloading contents when needed: ---
 //Define an observer which will propagate perm_dialog's filepath attribute to all the relevant elements, whenever it changes:
@@ -223,6 +239,11 @@ function open_advanced_dialog(file_path) {
     $('#adv_owner_filepath').text(file_path);
     $('#adv_effective_filepath').text(file_path);
     $('#advdialog').attr('filepath', file_path);
+
+    //$('#advdialog').append($('<div id="permissions_user_title">Group or user names:</div>'))
+    // $('#file_permission_users').append(file_permission_users)
+    // $('#file_permission_users').append(perm_add_user_select)
+    // $('#file_permission_users').append(perm_remove_user_button)
 
     // clear dynamic content:
     $('#adv_perm_table tr:gt(0)').remove()
