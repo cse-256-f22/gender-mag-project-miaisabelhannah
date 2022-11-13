@@ -602,4 +602,4 @@ $('#filestructure').css({
     'width':'49%',
     'vertical-align': 'top'
 })
-$('#filestructure').after('<div id="sidepanel" style="display:inline-block;width:49%"></div>')
+$('#filestructure').after('<div id="sidepanel" style="display:inline-block;width:49%"><h2>Select a User to check their current permission level for each item.</h2><p>Click on the circular "i" icon to check.</p></div>')
