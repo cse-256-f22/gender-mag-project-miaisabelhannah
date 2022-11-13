@@ -18,6 +18,18 @@
     right: 0;
 }
 
+#permdialog_objname {
+    text-align: center;
+}
+
+#sidepanel {
+    margin-left: 10px;
+}
+
+#file-select-field {
+    border: 1px lightgray solid;
+    margin-bottom: 10px;
+}
 
 #mturk-top-banner-drop-down-content {
     position: absolute;

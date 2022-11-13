@@ -28,10 +28,11 @@ function add_files_to_select_field(file_obj, path) {
 
 
 
-$('#sidepanel').append(effective_perm_panel);
+// $('#sidepanel').append(effective_perm_panel);
 $('#sidepanel').append(user_select_field);
-$('#sidepanel').append($(`<p><strong>Select a file:</strong></p>`))
-$('#sidepanel').append(file_select_field)
+$('#sidepanel').append($(`<p><strong>Select a file:</strong></p>`));
+$('#sidepanel').append(file_select_field);
+$('#sidepanel').append(effective_perm_panel);
 
 const info_dialog = define_new_dialog("info-dialog", "Permissions Info");
 $('.perm_info').click(function(){
