@@ -6,6 +6,9 @@ $('#perm-panel').attr('filepath', '/C')
 function set_user(selected_user) {
     $('#perm-panel').attr('username', selected_user);
 }
+
+
+
 const user_select_field = define_new_user_select_field("user-select-field", "Select a user", set_user);
 $('#sidepanel').append(user_select_field);
 
@@ -41,6 +44,7 @@ function make_file_element(file_obj) {
                 <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                     <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
+                    Edit Permissions
                 </button>
             </h3>
         </div>`)
@@ -61,6 +65,7 @@ function make_file_element(file_obj) {
             <span class="oi oi-file" id="${file_hash}_icon"/> ${file_obj.filename}
             <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                 <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
+                Edit Permissions
             </button>
         </div>`)
     }
