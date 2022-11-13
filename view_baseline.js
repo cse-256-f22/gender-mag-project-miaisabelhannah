@@ -39,8 +39,8 @@ grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_p
 grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
 
 // Make the  permission checkboxes table:
-grouped_permissions = define_permission_checkboxes('perm_entry')
-grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
+// grouped_permissions = define_permission_checkboxes('perm_entry')
+// grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
 
 // Make the list of users (empty for now - will get populated when we know the file):
 file_permission_users = define_single_select_list('permdialog_file_user_list', function(selected_user, e, ui){

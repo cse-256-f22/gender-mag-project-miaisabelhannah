@@ -1,25 +1,46 @@
 // ---- Define your dialogs  and panels here ----
 const effective_perm_panel = define_new_effective_permissions('perm-panel', true);
-$('#sidepanel').append(effective_perm_panel);
-$('#perm-panel').attr('filepath', '/C')
 
-function set_user(selected_user) {
+const user_select_field = define_new_user_select_field("user-select-field", "Select a user", function(selected_user) {
     $('#perm-panel').attr('username', selected_user);
+});
+
+const file_select_field = define_single_select_list("file-select-field", function(selected_file) {
+    $('#perm-panel').attr('filepath', selected_file)
+});
+for(let root_file of root_files) {
+    add_files_to_select_field(root_file, "")
+}
+
+function add_files_to_select_field(file_obj, path) {
+    let file_hash = get_full_path(file_obj)
+    
+    let new_path = path + "/" + file_obj.filename
+    file_select_field.append($(`<p name=${new_path}>${file_obj.filename}</p>`))
+    
+    if( file_hash in parent_to_children) {
+        for(child_file of parent_to_children[file_hash]) {
+            add_files_to_select_field(child_file, new_path)
+
+        }
+    }
 }
 
 
 
-const user_select_field = define_new_user_select_field("user-select-field", "Select a user", set_user);
+$('#sidepanel').append(effective_perm_panel);
 $('#sidepanel').append(user_select_field);
+$('#sidepanel').append($(`<p><strong>Select a file:</strong></p>`))
+$('#sidepanel').append(file_select_field)
 
 const info_dialog = define_new_dialog("info-dialog", "Permissions Info");
 $('.perm_info').click(function(){
     console.log('clicked!')
     info_dialog.dialog('open')
 
-    console.log($('#perm-panel').attr('filepath'))
-    console.log($('#perm-panel').attr('username'))
-    console.log($(this).attr('permission_name'))
+    // console.log($('#perm-panel').attr('filepath'))
+    // console.log($('#perm-panel').attr('username'))
+    // console.log($(this).attr('permission_name'))
 
     const file_obj = path_to_file[$('#perm-panel').attr('filepath')];
     const user_obj = all_users[$('#perm-panel').attr('username')];
