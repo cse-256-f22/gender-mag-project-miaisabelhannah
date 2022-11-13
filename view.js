@@ -26,6 +26,7 @@ $('.perm_info').click(function(){
 
     const check_action_allowed = allow_user_action(file_obj, user_obj, $(this).attr('permission_name'), true);
     const explanation_text = get_explanation_text(check_action_allowed);
+    $("#info-dialog").empty();
 
     $('#info-dialog').append(explanation_text);
 
