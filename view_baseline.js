@@ -32,7 +32,8 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
 obj_name_div = $('<div id="permdialog_objname" class="section">Changing permissions for <span id="permdialog_objname_namespan"></span> </div>')
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">To change file ownership or special permissions, click More Options.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">To change file ownership or special permissions, click <strong>More Options</strong>.</div>')
+inherited_perm_expl = $(`<div><strong>Gray checkboxes</strong> mean these permissions are inherited from the parent folder and can't be changes. Try either denying these permissions or removing the inherited permissions in More Options.</div>`)
 
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -165,6 +166,7 @@ perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - a
 // perm_dialog.append(perm_entry)
 
 perm_dialog.append(grouped_permissions)
+perm_dialog.append(inherited_perm_expl)
 perm_dialog.append(advanced_expl_div)
 //perm_dialog.append(perm_entry)
 
